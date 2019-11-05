@@ -8,22 +8,27 @@
 from django.db import models
 
 
-class Groups(models.Model):
+class Group(models.Model):
     location = models.ForeignKey(
-        'Locations',
+        'Location',
         on_delete=models.CASCADE,
-        default=None,
-        blank=True, null=True
+        default=None, blank=True, null=True
     )
     time_start = models.TimeField()
     time_end = models.TimeField()
     days = models.CharField(max_length=14)
     teacher = models.ForeignKey(
-        'Teachers',
+        'Teacher',
         on_delete=models.CASCADE,
-        default=None, blank=True, null=True)
+        default=None, blank=True, null=True
+    )
     name = models.CharField(max_length=50)
     description = models.CharField(max_length=255)
+    subject = models.ForeignKey(
+        'Subject',
+        on_delete=models.CASCADE,
+        default=None, blank=True, null=True
+    )
 
     class Meta:
         #managed = False
@@ -32,7 +37,7 @@ class Groups(models.Model):
         return self.name
 
 
-class Locations(models.Model):
+class Location(models.Model):
     country = models.CharField(max_length=50)
     region = models.CharField(max_length=50)
     city = models.CharField(max_length=50)
@@ -49,7 +54,7 @@ class Locations(models.Model):
         return self.name
 
 
-class Teachers(models.Model):
+class Teacher(models.Model):
     lastname = models.CharField(max_length=50)
     firstname = models.CharField(max_length=50)
     middlename = models.CharField(max_length=50)
@@ -62,3 +67,66 @@ class Teachers(models.Model):
         db_table = 'teachers'
     def __str__(self):
         return self.lastname + ' ' + self.firstname
+
+
+class Subject(models.Model):
+    name = models.CharField(max_length=50)
+    description = models.TextField()
+    class Meta:
+        #managed = False
+        db_table = 'subjects'
+    def __str__(self):
+        return self.name
+
+
+class Signup(models.Model):
+    lastname = models.CharField(max_length=50)
+    firstname = models.CharField(max_length=50)
+    middlename = models.CharField(max_length=50)
+    vk_id = models.IntegerField()
+    subject = models.ForeignKey(
+        'Subject',
+        on_delete=models.CASCADE,
+        default=None, blank=True, null=True
+    )
+    location = models.ForeignKey(
+        'Location',
+        on_delete=models.CASCADE,
+        default=None, blank=True, null=True
+    )
+    description = models.TextField()
+    class Meta:
+        #managed = False
+        db_table = 'signups'
+    def __str__(self):
+        return self.lastname
+
+
+class EventType(models.Model):
+    name = models.CharField(max_length=50)
+    class Meta:
+        #managed = False
+        db_table = 'event_types'
+    def __str__(self):
+        return self.name
+
+
+class Event(models.Model):
+    type = models.ForeignKey(
+        'EventType',
+        on_delete=models.CASCADE,
+        default=None, blank=True, null=True
+    )
+    description = models.TextField()
+    date_from = models.DateField()
+    date_to = models.DateField()
+    group = models.ForeignKey(
+        'Group',
+        on_delete=models.CASCADE,
+        default=None, blank=True, null=True
+    )
+    class Meta:
+        #managed = False
+        db_table = 'events'
+    def __str__(self):
+        return self.name

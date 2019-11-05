@@ -2,18 +2,33 @@ from django.contrib import admin
 
 from .models import *
 
-@admin.register(Teachers)
+@admin.register(Teacher)
 class TeachersAdmin(admin.ModelAdmin):
     list_display = ('lastname', 'firstname')
 
-@admin.register(Locations)
+@admin.register(Location)
 class LocationsAdmin(admin.ModelAdmin):
     list_display = ('name',)
 
-@admin.register(Groups)
+@admin.register(Group)
 class GroupsAdmin(admin.ModelAdmin):
-    list_display = ('name', 'time_start', 'time_end', 'days')
+    list_display = ('name', 'subject', 'time_start', 'time_end', 'days')
 
+@admin.register(Subject)
+class SubjectsAdmin(admin.ModelAdmin):
+    list_display = ('name', 'description')
+
+@admin.register(Signup)
+class SignupsAdmin(admin.ModelAdmin):
+    list_display = ('lastname', 'subject', 'location')
+
+@admin.register(EventType)
+class EventTypesAdmin(admin.ModelAdmin):
+    list_display = ('name',)
+
+@admin.register(Event)
+class EventsAdmin(admin.ModelAdmin):
+    list_display = ('type', 'date_from', 'date_to', 'group')
 #admin.site.register(Teachers)
 #admin.site.register(Locations)
 #admin.site.register(Groups)
