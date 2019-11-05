@@ -4,7 +4,7 @@ from .models import *
 
 @admin.register(Teacher)
 class TeachersAdmin(admin.ModelAdmin):
-    list_display = ('lastname', 'firstname')
+    list_display = ('last_name', 'first_name')
 
 @admin.register(Location)
 class LocationsAdmin(admin.ModelAdmin):
@@ -20,7 +20,7 @@ class SubjectsAdmin(admin.ModelAdmin):
 
 @admin.register(Signup)
 class SignupsAdmin(admin.ModelAdmin):
-    list_display = ('lastname', 'subject', 'location')
+    list_display = ('last_name', 'first_name', 'subject', 'location')
 
 @admin.register(EventType)
 class EventTypesAdmin(admin.ModelAdmin):

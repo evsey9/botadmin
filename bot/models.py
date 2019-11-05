@@ -23,7 +23,7 @@ class Group(models.Model):
         default=None, blank=True, null=True
     )
     name = models.CharField(max_length=50)
-    description = models.CharField(max_length=255)
+    description = models.CharField(max_length=255, blank=True)
     subject = models.ForeignKey(
         'Subject',
         on_delete=models.CASCADE,
@@ -55,9 +55,9 @@ class Location(models.Model):
 
 
 class Teacher(models.Model):
-    lastname = models.CharField(max_length=50)
-    firstname = models.CharField(max_length=50)
-    middlename = models.CharField(max_length=50)
+    last_name = models.CharField(max_length=50)
+    first_name = models.CharField(max_length=50)
+    middle_name = models.CharField(max_length=50)
     phone = models.CharField(max_length=20)
     mail = models.CharField(max_length=50)
     age = models.IntegerField()
@@ -66,7 +66,7 @@ class Teacher(models.Model):
         #managed = False
         db_table = 'teachers'
     def __str__(self):
-        return self.lastname + ' ' + self.firstname
+        return self.last_name + ' ' + self.first_name
 
 
 class Subject(models.Model):
@@ -80,9 +80,9 @@ class Subject(models.Model):
 
 
 class Signup(models.Model):
-    lastname = models.CharField(max_length=50)
-    firstname = models.CharField(max_length=50)
-    middlename = models.CharField(max_length=50)
+    last_name = models.CharField(max_length=50)
+    first_name = models.CharField(max_length=50)
+    middle_name = models.CharField(max_length=50)
     vk_id = models.IntegerField()
     subject = models.ForeignKey(
         'Subject',
@@ -94,12 +94,12 @@ class Signup(models.Model):
         on_delete=models.CASCADE,
         default=None, blank=True, null=True
     )
-    description = models.TextField()
+    notes = models.TextField()
     class Meta:
         #managed = False
         db_table = 'signups'
     def __str__(self):
-        return self.lastname
+        return self.last_name + ' ' + self.first_name
 
 
 class EventType(models.Model):
@@ -117,7 +117,7 @@ class Event(models.Model):
         on_delete=models.CASCADE,
         default=None, blank=True, null=True
     )
-    description = models.TextField()
+    description = models.TextField(blank=True)
     date_from = models.DateField()
     date_to = models.DateField()
     group = models.ForeignKey(
@@ -129,4 +129,4 @@ class Event(models.Model):
         #managed = False
         db_table = 'events'
     def __str__(self):
-        return self.name
+        return str(self.type) + ' ' + str(self.group)
