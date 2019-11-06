@@ -12,7 +12,7 @@ class LocationsAdmin(admin.ModelAdmin):
 
 @admin.register(Group)
 class GroupsAdmin(admin.ModelAdmin):
-    list_display = ('name', 'subject', 'time_start', 'time_end', 'days')
+    list_display = ('name', 'location', 'subject', 'time_start', 'time_end', 'days')
 
 @admin.register(Subject)
 class SubjectsAdmin(admin.ModelAdmin):
