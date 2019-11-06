@@ -16,7 +16,10 @@ class Group(models.Model):
     )
     time_start = models.TimeField()
     time_end = models.TimeField()
-    days = models.CharField(max_length=14)
+    days = models.ManyToManyField(
+        'Day',
+        blank=True, null=True
+    )
     teacher = models.ForeignKey(
         'Teacher',
         on_delete=models.CASCADE,
@@ -130,3 +133,13 @@ class Event(models.Model):
         db_table = 'events'
     def __str__(self):
         return str(self.type) + ' ' + str(self.group)
+
+
+class Day(models.Model):
+    name = models.CharField(max_length=50)
+    class Meta:
+        #managed = False
+        ordering = ('id',)
+        db_table = 'daysofweek'
+    def __str__(self):
+        return self.name
