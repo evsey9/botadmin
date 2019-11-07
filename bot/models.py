@@ -143,3 +143,21 @@ class Day(models.Model):
         db_table = 'daysofweek'
     def __str__(self):
         return self.name
+
+
+class GenericAnswer(models.Model):
+    input = models.CharField(max_length=50)
+    output = models.TextField()
+    class Meta:
+        #managed = False
+        db_table = 'genericanswers'
+
+
+class Command(models.Model):
+    name = models.CharField(max_length=50)
+    description = models.TextField()
+    no_argument_response = models.CharField(max_length=100)
+    not_found_response = models.CharField(max_length=100)
+    class Meta:
+        #managed = False
+        db_table = 'commands'

@@ -33,6 +33,14 @@ class EventsAdmin(admin.ModelAdmin):
 @admin.register(Day)
 class DaysAdmin(admin.ModelAdmin):
     list_display = ('name',)
+
+@admin.register(GenericAnswer)
+class GenericAnswersAdmin(admin.ModelAdmin):
+    list_display = ('input', 'output')
+
+@admin.register(Command)
+class CommandsAdmin(admin.ModelAdmin):
+    list_display = ('name', 'description')
 #admin.site.register(Teachers)
 #admin.site.register(Locations)
 #admin.site.register(Groups)
