@@ -151,6 +151,9 @@ class GenericAnswer(models.Model):
     class Meta:
         #managed = False
         db_table = 'genericanswers'
+    def __str__(self):
+        return self.input
+
 
 
 class Command(models.Model):
@@ -161,3 +164,5 @@ class Command(models.Model):
     class Meta:
         #managed = False
         db_table = 'commands'
+    def __str__(self):
+        return self.name
