@@ -38,6 +38,10 @@ class DaysAdmin(admin.ModelAdmin):
 class GenericAnswersAdmin(admin.ModelAdmin):
     list_display = ('input', 'output')
 
+@admin.register(SituationAnswer)
+class SituationAnswersAdmin(admin.ModelAdmin):
+    list_display = ('situation', 'output')
+
 @admin.register(Command)
 class CommandsAdmin(admin.ModelAdmin):
     list_display = ('name', 'description')
