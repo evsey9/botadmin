@@ -155,6 +155,10 @@ class GenericAnswer(models.Model):
         return self.input
 
 
+class SituationAnswer(models.Model):
+    situation = models.CharField(max_length=50)
+    output = models.TextField()
+
 
 class Command(models.Model):
     name = models.CharField(max_length=50)
