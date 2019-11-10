@@ -31,7 +31,7 @@ class Group(models.Model):
         'Location',
         verbose_name='локация',
         on_delete=models.CASCADE,
-        default=None, blank=True, null=True
+        default=None
     )
     time_start = models.TimeField(verbose_name='время начала')
     time_end = models.TimeField(verbose_name='время конца')
@@ -44,15 +44,15 @@ class Group(models.Model):
         'Teacher',
         verbose_name='учитель',
         on_delete=models.CASCADE,
-        default=None, blank=True, null=True
+        default=None
     )
     name = models.CharField(verbose_name='название', max_length=50)
-    description = models.CharField(verbose_name='описание', max_length=255, blank=True)
+    description = models.CharField(verbose_name='описание', max_length=255, blank=True, null=True)
     subject = models.ForeignKey(
         'Subject',
         verbose_name='предмет',
         on_delete=models.CASCADE,
-        default=None, blank=True, null=True
+        default=None
     )
 
     class Meta:
