@@ -71,8 +71,8 @@ class Location(models.Model):
     street = models.CharField(verbose_name='улица', max_length=50)
     building = models.CharField(verbose_name='здание', max_length=50)
     name = models.CharField(verbose_name='название', max_length=50)
-    latitude = models.FloatField(verbose_name='широта')
-    longitude = models.FloatField(verbose_name='долгота')
+    latitude = models.FloatField(verbose_name='широта', blank=True, null=True)
+    longitude = models.FloatField(verbose_name='долгота', blank=True, null=True)
 
     class Meta:
         #managed = False
@@ -87,9 +87,9 @@ class Teacher(models.Model):
     last_name = models.CharField(verbose_name='фамилия', max_length=50)
     first_name = models.CharField(verbose_name='имя', max_length=50)
     middle_name = models.CharField(verbose_name='отчество', max_length=50)
-    phone = models.CharField(verbose_name='телефон', max_length=20)
-    mail = models.CharField(verbose_name='почта', max_length=50)
-    age = models.IntegerField(verbose_name='возраст')
+    phone = models.CharField(verbose_name='телефон', max_length=20, blank=True, null=True)
+    mail = models.CharField(verbose_name='почта', max_length=50, blank=True, null=True)
+    age = models.IntegerField(verbose_name='возраст', blank=True, null=True)
 
     class Meta:
         #managed = False
