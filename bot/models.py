@@ -27,9 +27,23 @@ def assign_user_timezone(request, user, **kwargs):
     set_session_timezone(request.session, user.timezone)
 
 class Group(models.Model):
+    name = models.CharField(verbose_name='название', max_length=50)
+    description = models.CharField(verbose_name='описание', max_length=255, blank=True, null=True)
+    subject = models.ForeignKey(
+        'Subject',
+        verbose_name='предмет',
+        on_delete=models.CASCADE,
+        default=None
+    )
     location = models.ForeignKey(
         'Location',
         verbose_name='локация',
+        on_delete=models.CASCADE,
+        default=None
+    )
+    teacher = models.ForeignKey(
+        'Teacher',
+        verbose_name='учитель',
         on_delete=models.CASCADE,
         default=None
     )
@@ -39,20 +53,6 @@ class Group(models.Model):
         'Day',
         verbose_name='дни',
         blank=True, null=True
-    )
-    teacher = models.ForeignKey(
-        'Teacher',
-        verbose_name='учитель',
-        on_delete=models.CASCADE,
-        default=None
-    )
-    name = models.CharField(verbose_name='название', max_length=50)
-    description = models.CharField(verbose_name='описание', max_length=255, blank=True, null=True)
-    subject = models.ForeignKey(
-        'Subject',
-        verbose_name='предмет',
-        on_delete=models.CASCADE,
-        default=None
     )
     room = models.IntegerField(verbose_name='аудитория', default=None, blank=True, null=True)
 
@@ -66,12 +66,12 @@ class Group(models.Model):
 
 
 class Location(models.Model):
+    name = models.CharField(verbose_name='название', max_length=50)
     country = models.CharField(verbose_name='страна', max_length=50)
     region = models.CharField(verbose_name='регион', max_length=50)
     city = models.CharField(verbose_name='город', max_length=50)
     street = models.CharField(verbose_name='улица', max_length=50)
     building = models.CharField(verbose_name='здание', max_length=50)
-    name = models.CharField(verbose_name='название', max_length=50)
     latitude = models.FloatField(verbose_name='широта', blank=True, null=True)
     longitude = models.FloatField(verbose_name='долгота', blank=True, null=True)
 
