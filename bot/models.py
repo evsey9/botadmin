@@ -138,11 +138,11 @@ class Event(models.Model):
         'EventType',
         verbose_name='тип',
         on_delete=models.CASCADE,
-        default=None, blank=True, null=True
+        default=1
     )
     description = models.TextField(verbose_name='описание', blank=True)
-    date_from = models.DateField(verbose_name='дата с')
-    date_to = models.DateField(verbose_name='дата на')
+    date_from = models.DateTimeField(verbose_name='дата с')
+    date_to = models.DateTimeField(verbose_name='дата на')
     group = models.ForeignKey(
         'Group',
         verbose_name='группа',
