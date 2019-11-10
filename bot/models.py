@@ -54,7 +54,7 @@ class Group(models.Model):
         on_delete=models.CASCADE,
         default=None
     )
-    room = models.IntegerField(default=None, blank=True, null=True)
+    room = models.IntegerField(verbose_name='аудитория', default=None, blank=True, null=True)
 
     class Meta:
         #managed = False
