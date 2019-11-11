@@ -4,15 +4,15 @@ from .models import *
 
 @admin.register(Teacher)
 class TeachersAdmin(admin.ModelAdmin):
-    list_display = ('last_name', 'first_name')
+    list_display = ('last_name', 'first_name', 'middle_name')
 
 @admin.register(Location)
 class LocationsAdmin(admin.ModelAdmin):
-    list_display = ('name',)
+    list_display = ('name', 'street', 'building')
 
 @admin.register(Group)
 class GroupsAdmin(admin.ModelAdmin):
-    list_display = ('name', 'location', 'subject', 'time_start', 'time_end')
+    list_display = ('name', 'location', 'teacher', 'subject', 'time_start', 'time_end', 'room')
 
 @admin.register(Subject)
 class SubjectsAdmin(admin.ModelAdmin):
@@ -20,7 +20,7 @@ class SubjectsAdmin(admin.ModelAdmin):
 
 @admin.register(Signup)
 class SignupsAdmin(admin.ModelAdmin):
-    list_display = ('last_name', 'first_name', 'subject', 'location')
+    list_display = ('last_name', 'first_name', 'middle_name', 'subject', 'location', 'vk_id')
 
 @admin.register(EventType)
 class EventTypesAdmin(admin.ModelAdmin):
